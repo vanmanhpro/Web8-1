@@ -59,7 +59,7 @@ var update = function(){
   }
 
   Nakama.background.position.y += 5;
-  if(Nakama.background.position.y > 0) Nakama.background.position.y -= 960;
+  if(Nakama.background.position.y > 0) Nakama.background.position.y -= Nakama.configs.GAME_HEIGHT;
 }
 
 // before camera render (mostly for debug)
