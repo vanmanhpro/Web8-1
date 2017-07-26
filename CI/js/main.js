@@ -39,24 +39,43 @@ var create = function(){
   Nakama.keyboard = Nakama.game.input.keyboard;
 
   Nakama.background = Nakama.game.add.sprite(0, -960, 'background');
-  Nakama.player = Nakama.game.add.sprite(200, 400, 'assets', 'Spaceship1-Player.png');
+
+  Nakama.players = [];
+  Nakama.players.push(
+    new ShipController(
+      200,
+      400,
+      'Spaceship1-Player.png',
+      {
+        up    : Phaser.Keyboard.UP,
+        down  : Phaser.Keyboard.DOWN,
+        left  : Phaser.Keyboard.LEFT,
+        right : Phaser.Keyboard.RIGHT,
+        fire  : Phaser.Keyboard.SPACEBAR
+      }
+    )
+  );
+  Nakama.players.push(
+    new ShipController(
+      400,
+      400,
+      'Spaceship1-Partner.png',
+      {
+        up    : Phaser.Keyboard.W,
+        down  : Phaser.Keyboard.S,
+        left  : Phaser.Keyboard.A,
+        right : Phaser.Keyboard.D,
+        fire  : Phaser.Keyboard.F
+      }
+    )
+  );
 }
 
 // update game state each frame
 var update = function(){
-  if(Nakama.keyboard.isDown(Phaser.Keyboard.LEFT)){
-    Nakama.player.position.x = Math.max(0, Nakama.player.position.x-10);
-  }
-  else if(Nakama.keyboard.isDown(Phaser.Keyboard.RIGHT)){
-    Nakama.player.position.x = Math.min(Nakama.configs.GAME_WIDTH - Nakama.player.width, Nakama.player.position.x+10);
-  }
-
-  if(Nakama.keyboard.isDown(Phaser.Keyboard.UP)){
-    Nakama.player.position.y = Math.max(0, Nakama.player.position.y-10);
-  }
-  else if(Nakama.keyboard.isDown(Phaser.Keyboard.DOWN)){
-    Nakama.player.position.y = Math.min(Nakama.configs.GAME_HEIGHT - Nakama.player.height, Nakama.player.position.y+10);
-  }
+  // for(var player of Nakama.players){
+  //   player.update();
+  // }
 
   Nakama.background.position.y += 5;
   if(Nakama.background.position.y > 0) Nakama.background.position.y -= Nakama.configs.GAME_HEIGHT;

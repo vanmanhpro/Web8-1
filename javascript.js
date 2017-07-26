@@ -54,3 +54,39 @@ function countDown3B(time, num){
 }
 
 countDown3(5);
+
+
+// public class MyClass{
+//   private int numberOfVisitor;
+//
+//   public MyClass(){
+//     this.numberOfVisitor = 0;
+//   }
+//
+//   public int getNumberOfVisitor(){
+//     return numberOfVisitor;
+//   }
+// }
+//
+// MyClass myWebsite = new MyClass();
+// myWebsite.numberOfVisitor // unknown
+
+
+function createWebsiteCounter(){
+  var numberOfVisitor = 0;
+
+  function getNumberOfVisitor(){
+    return numberOfVisitor;
+  }
+
+  function setNumberOfVisitor(num){
+    if(num > 0) numberOfVisitor = num;
+  }
+
+  return {
+    getNumberOfVisitor : getNumberOfVisitor,
+    setNumberOfVisitor : setNumberOfVisitor
+  }
+}
+
+var myWebsite = createWebsiteCounter();
